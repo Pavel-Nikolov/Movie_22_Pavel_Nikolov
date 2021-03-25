@@ -30,7 +30,7 @@ namespace DomainLayer.DataAccess
             {
                 return;
             }
-            List<Order> orders = context.Orders.ToList();
+            List<Order> orders = new List<Order>();
             Order orderFromDb;
             for (int i = 0; i < orders.Count; i++)
             {

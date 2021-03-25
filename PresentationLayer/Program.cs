@@ -25,11 +25,11 @@ namespace PresentationLayer
                     command = Console.ReadLine().Split();
                     switch (command[0].ToLower())
                     {
-                        case "brand":
+                        case "movie":
                             switch (command[1].ToLower())
                             {
                                 case "create":
-                                    DBManager.RunCommand(EntityType.Movie, OperationType.Create, command[2], command[3], command.Skip(4).ToArray());
+                                    DBManager.RunCommand(EntityType.Movie, OperationType.Create, command[2], command[3], command.Skip(4).Select(int.Parse).ToArray());
                                     break;
                                 case "read":
                                     DBManager.RunCommand(EntityType.Movie, OperationType.Read, command[2]);
@@ -41,7 +41,7 @@ namespace PresentationLayer
                                     DBManager.RunCommand(EntityType.Movie, OperationType.Delete, command[2]);
                                     break;
                                 case "update":
-                                    DBManager.RunCommand(EntityType.Movie, OperationType.Update, command[2], command[3], command[4], command.Skip(5).ToArray());
+                                    DBManager.RunCommand(EntityType.Movie, OperationType.Update, command[2], command[3], command[4], command.Skip(5).Select(int.Parse).ToArray());
                                     break;
                                 case "find":
                                     DBManager.RunCommand(EntityType.Movie, OperationType.Find, command[2]);
@@ -52,7 +52,7 @@ namespace PresentationLayer
                             }
                             break;
 
-                        case "product":
+                        case "order":
                             switch (command[1].ToLower())
                             {
                                 case "create":

@@ -137,13 +137,13 @@ namespace ServiceLayer
             switch (operationType)
             {
                 case OperationType.Create:
-                    int movieToBeCreatedId = int.Parse(args[3].ToString());
+                    int movieToBeCreatedId = int.Parse(args[2].ToString());
                     Movie movieToBeCreated = context.Movies.Find(movieToBeCreatedId);
                     List<User> usersToBeCreated = new List<User>();
 
-                    if (args.Length > 5)
+                    if (args.Length > 3)
                     {
-                        int[] userIdsToBeCreated = args[4] as int[];
+                        int[] userIdsToBeCreated = args[3] as int[];
                         foreach (var item in userIdsToBeCreated) 
                         {
                             usersToBeCreated.Add(context.Users.Find(item));
@@ -152,9 +152,9 @@ namespace ServiceLayer
 
                     Order productToBeCreated = new Order()
                     {
-                        ID = int.Parse(args[0].ToString()),
-                        Name = args[1].ToString(),                        
-                        Price = decimal.Parse(args[2].ToString()),
+                        
+                        Name = args[0].ToString(),                        
+                        Price = decimal.Parse(args[1].ToString()),
                         Movie = movieToBeCreated,
                         Users = usersToBeCreated
                     };
@@ -186,7 +186,7 @@ namespace ServiceLayer
                     Movie movieToBeUpdated = context.Movies.Find(movieToBeUpdatedId);
                     List<User> usersToBeUpdated = new List<User>();
 
-                    if (args.Length > 5)
+                    if (args.Length > 4)
                     {
                         int[] userIdsToBeUpdated = args[4] as int[];
                         foreach (var item in userIdsToBeUpdated)
@@ -226,7 +226,7 @@ namespace ServiceLayer
                 case OperationType.Create:
                     List<Order> ordersToBeCreated = new List<Order>();
 
-                    if (args.Length > 1)
+                    if (args.Length > 2)
                     {
                         int[] ordersIdsToBeCreated = args[2] as int[];
                         foreach (var item in ordersIdsToBeCreated)
